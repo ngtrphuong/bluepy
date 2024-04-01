@@ -21,7 +21,7 @@ def get_html(url, local_filename):
     try:
         html = file(cachefilename).read()
     except:
-        html = requests.get(url).content
+        html = requests.get(url, timeout=60).content
         file(cachefilename, 'w').write(html)
     return html
 
