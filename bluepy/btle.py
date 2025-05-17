@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
+from security import safe_command
 
 """Bluetooth Low Energy Python interface"""
 import sys
@@ -281,7 +282,7 @@ class BluepyHelper:
             self._stderr = open(os.devnull, "w")
             args=[helperExe]
             if iface is not None: args.append(str(iface))
-            self._helper = subprocess.Popen(args,
+            self._helper = safe_command.run(subprocess.Popen, args,
                                             stdin=subprocess.PIPE,
                                             stdout=subprocess.PIPE,
                                             stderr=self._stderr,
