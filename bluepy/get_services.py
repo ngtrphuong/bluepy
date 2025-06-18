@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
-import requests
 import os
 import tempfile
 import errno
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 
 def get_html(url, local_filename):
@@ -21,7 +21,7 @@ def get_html(url, local_filename):
     try:
         html = file(cachefilename).read()
     except:
-        html = requests.get(url).content
+        html = safe_requests.get(url).content
         file(cachefilename, 'w').write(html)
     return html
 
